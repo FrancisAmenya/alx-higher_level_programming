@@ -1,0 +1,14 @@
+# Ignore node_modules directory
+./node_modules/
+./*/node_modules
+./*/*/node_modules
+
+# Ignore log files
+*.log
+
+#Ignore Json
+#./0x14-javascript-web_scraping/*.json
+
+
+# Ignore environment configuration file
+.env
