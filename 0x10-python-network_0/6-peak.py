@@ -1,24 +1,24 @@
 #!/usr/bin/python3
-'''
-Finds a peak in a list of unsorted integers.
-'''
+"""Finds a peak in a list of unsorted integers"""
 
 
 def find_peak(list_of_integers):
-    '''
-    Finds the peak integer
-    '''
-    list_length = len(list_of_integers)
-    end = list_length - 1
-    if not list_of_integers:
-        return None
-    if list_of_integers[0] >= list_of_integers[1]:
-        return list_of_integers[0]
-    if list_of_integers[end] > list_of_integers[end - 1]:
-        return list_of_integers[end]
+    """Finds a peak in list_of_integers"""
 
-    for nums in range(1, end):
-        if list_of_integers[nums] > list_of_integers[nums + 1] and\
-           list_of_integers[nums] > list_of_integers[nums - 1]:
-            return list_of_integers[nums]
-    return None
+    if list_of_integers is None or list_of_integers == []:
+        return None
+    lo = 0
+    hi = len(list_of_integers)
+    mid = ((hi - lo) // 2) + lo
+    mid = int(mid)
+    if hi == 1:
+        return list_of_integers[0]
+    if hi == 2:
+        return max(list_of_integers)
+    if list_of_integers[mid] >= list_of_integers[mid - 1] and\
+            list_of_integers[mid] >= list_of_integers[mid + 1]:
+        return list_of_integers[mid]
+    if mid > 0 and list_of_integers[mid] < list_of_integers[mid + 1]:
+        return find_peak(list_of_integers[mid:])
+    if mid > 0 and list_of_integers[mid] < list_of_integers[mid - 1]:
+        return find_peak(list_of_integers[:mid])
